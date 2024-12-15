@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModBlockEntityTypes {
+    public static BlockEntityTypeRegisterer blockEntityTypeRegisterer;
     public static final ResourcefulRegistry<BlockEntityType<?>> BLOCK_ENTITY_TYPES = ResourcefulRegistries.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, Handcrafted.MOD_ID);
 
     public static final RegistryEntry<BlockEntityType<OvenBlockEntity>> OVEN = BLOCK_ENTITY_TYPES.register("oven", () -> createBlockEntityType(OvenBlockEntity::new, ModBlocks.OVEN.get()));
@@ -37,10 +38,10 @@ public class ModBlockEntityTypes {
     }
 
     public static <E extends BlockEntity> BlockEntityType<E> createBlockEntityType(BlockEntityType.BlockEntitySupplier<E> factory, Block... blocks) {
-        return BlockEntityType.Builder.of(factory, blocks).build(null);
+        return blockEntityTypeRegisterer.createBlockEntityType(factory::create, blocks);
     }
 
     public static <E extends BlockEntity> BlockEntityType<E> createBlockEntityType(BlockEntityType.BlockEntitySupplier<E> factory, ResourcefulRegistry<Block> registry) {
-        return BlockEntityType.Builder.of(factory, registry.stream().map(RegistryEntry::get).toArray(Block[]::new)).build(null);
+        return blockEntityTypeRegisterer.createBlockEntityType(factory::create, registry);
     }
 }

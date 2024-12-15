@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
 
 @SuppressWarnings("unused")
 public class ModItems {
@@ -64,22 +63,22 @@ public class ModItems {
     public static final RegistryEntry<Item> BERRY_JAM_JAR = ITEMS.register("berry_jam_jar", () -> new BlockItem(ModBlocks.BERRY_JAM_JAR.get(), new Item.Properties()));
     public static final RegistryEntry<Item> STACKABLE_BOOK = ITEMS.register("stackable_book", () -> new BlockItem(ModBlocks.STACKABLE_BOOK.get(), new Item.Properties()));
 
-    public static final RegistryEntry<Item> BLACK_CUSHION = CUSHIONS.register("black_cushion", () -> new ItemNameBlockItem(ModBlocks.BLACK_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> BLUE_CUSHION = CUSHIONS.register("blue_cushion", () -> new ItemNameBlockItem(ModBlocks.BLUE_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> BROWN_CUSHION = CUSHIONS.register("brown_cushion", () -> new ItemNameBlockItem(ModBlocks.BROWN_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> CYAN_CUSHION = CUSHIONS.register("cyan_cushion", () -> new ItemNameBlockItem(ModBlocks.CYAN_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> GRAY_CUSHION = CUSHIONS.register("gray_cushion", () -> new ItemNameBlockItem(ModBlocks.GRAY_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> GREEN_CUSHION = CUSHIONS.register("green_cushion", () -> new ItemNameBlockItem(ModBlocks.GREEN_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> LIGHT_BLUE_CUSHION = CUSHIONS.register("light_blue_cushion", () -> new ItemNameBlockItem(ModBlocks.LIGHT_BLUE_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> LIGHT_GRAY_CUSHION = CUSHIONS.register("light_gray_cushion", () -> new ItemNameBlockItem(ModBlocks.LIGHT_GRAY_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> LIME_CUSHION = CUSHIONS.register("lime_cushion", () -> new ItemNameBlockItem(ModBlocks.LIME_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> MAGENTA_CUSHION = CUSHIONS.register("magenta_cushion", () -> new ItemNameBlockItem(ModBlocks.MAGENTA_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> ORANGE_CUSHION = CUSHIONS.register("orange_cushion", () -> new ItemNameBlockItem(ModBlocks.ORANGE_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> PINK_CUSHION = CUSHIONS.register("pink_cushion", () -> new ItemNameBlockItem(ModBlocks.PINK_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> PURPLE_CUSHION = CUSHIONS.register("purple_cushion", () -> new ItemNameBlockItem(ModBlocks.PURPLE_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> RED_CUSHION = CUSHIONS.register("red_cushion", () -> new ItemNameBlockItem(ModBlocks.RED_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> WHITE_CUSHION = CUSHIONS.register("white_cushion", () -> new ItemNameBlockItem(ModBlocks.WHITE_CUSHION.get(), new Item.Properties()));
-    public static final RegistryEntry<Item> YELLOW_CUSHION = CUSHIONS.register("yellow_cushion", () -> new ItemNameBlockItem(ModBlocks.YELLOW_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> BLACK_CUSHION = CUSHIONS.register("black_cushion", () -> new BlockItem(ModBlocks.BLACK_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> BLUE_CUSHION = CUSHIONS.register("blue_cushion", () -> new BlockItem(ModBlocks.BLUE_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> BROWN_CUSHION = CUSHIONS.register("brown_cushion", () -> new BlockItem(ModBlocks.BROWN_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> CYAN_CUSHION = CUSHIONS.register("cyan_cushion", () -> new BlockItem(ModBlocks.CYAN_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> GRAY_CUSHION = CUSHIONS.register("gray_cushion", () -> new BlockItem(ModBlocks.GRAY_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> GREEN_CUSHION = CUSHIONS.register("green_cushion", () -> new BlockItem(ModBlocks.GREEN_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> LIGHT_BLUE_CUSHION = CUSHIONS.register("light_blue_cushion", () -> new BlockItem(ModBlocks.LIGHT_BLUE_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> LIGHT_GRAY_CUSHION = CUSHIONS.register("light_gray_cushion", () -> new BlockItem(ModBlocks.LIGHT_GRAY_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> LIME_CUSHION = CUSHIONS.register("lime_cushion", () -> new BlockItem(ModBlocks.LIME_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> MAGENTA_CUSHION = CUSHIONS.register("magenta_cushion", () -> new BlockItem(ModBlocks.MAGENTA_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> ORANGE_CUSHION = CUSHIONS.register("orange_cushion", () -> new BlockItem(ModBlocks.ORANGE_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> PINK_CUSHION = CUSHIONS.register("pink_cushion", () -> new BlockItem(ModBlocks.PINK_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> PURPLE_CUSHION = CUSHIONS.register("purple_cushion", () -> new BlockItem(ModBlocks.PURPLE_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> RED_CUSHION = CUSHIONS.register("red_cushion", () -> new BlockItem(ModBlocks.RED_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> WHITE_CUSHION = CUSHIONS.register("white_cushion", () -> new BlockItem(ModBlocks.WHITE_CUSHION.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> YELLOW_CUSHION = CUSHIONS.register("yellow_cushion", () -> new BlockItem(ModBlocks.YELLOW_CUSHION.get(), new Item.Properties()));
 
     public static final RegistryEntry<Item> BLACK_SHEET = SHEETS.register("black_sheet", () -> new TooltipItem(ConstantComponents.PLACE_ON_FURNITURE, new Item.Properties()));
     public static final RegistryEntry<Item> BLUE_SHEET = SHEETS.register("blue_sheet", () -> new TooltipItem(ConstantComponents.PLACE_ON_FURNITURE, new Item.Properties()));

@@ -7,6 +7,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 
+import java.util.Optional;
+
 public class ModPaintingVariantProvider {
 
     public static final ResourceKey<PaintingVariant> PRIDE_STEVE = create("pride_steve");
@@ -82,6 +84,6 @@ public class ModPaintingVariantProvider {
     }
 
     private static void register(BootstrapContext<PaintingVariant> context, ResourceKey<PaintingVariant> key, int width, int height) {
-        context.register(key, new PaintingVariant(width, height, key.location()));
+        context.register(key, new PaintingVariant(width, height, key.location(), Optional.empty(), Optional.empty()));
     }
 }

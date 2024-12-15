@@ -9,7 +9,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Containers;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -18,15 +18,15 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public final class InteractionUtils {
 
-    public static ItemInteractionResult interactOptionalCushion(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<OptionalColorProperty> colorProperty) {
+    public static InteractionResult interactOptionalCushion(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<OptionalColorProperty> colorProperty) {
         var colorState = state.getValue(colorProperty);
 
-        if (level.isClientSide()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (level.isClientSide()) return InteractionResult.PASS;
         if (stack.is(ModItemTags.CUSHIONS) && colorState == OptionalColorProperty.NONE) {
             level.setBlockAndUpdate(pos, state.setValue(colorProperty, OptionalColorProperty.fromCushion(stack.getItem())));
             level.playSound(null, pos, SoundEvents.WOOL_PLACE, player.getSoundSource(), 1, 1);
             if (!player.getAbilities().instabuild) stack.shrink(1);
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else if (colorState != OptionalColorProperty.NONE) {
             ItemStack cushion = colorState.toCushion();
             if (stack.is(ModItemTags.CUSHIONS) && !stack.is(cushion.getItem())) {
@@ -37,27 +37,27 @@ public final class InteractionUtils {
                     Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), cushion);
                     stack.shrink(1);
                 }
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             } else if (player.isShiftKeyDown()) {
                 level.setBlockAndUpdate(pos, state.setValue(colorProperty, OptionalColorProperty.NONE));
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), cushion);
                 level.playSound(null, pos, SoundEvents.WOOL_BREAK, player.getSoundSource(), 1, 1);
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 
-    public static ItemInteractionResult interactCushion(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<ColorProperty> colorProperty) {
+    public static InteractionResult interactCushion(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<ColorProperty> colorProperty) {
         var colorState = state.getValue(colorProperty);
 
-        if (level.isClientSide()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (level.isClientSide()) return InteractionResult.PASS;
         if (stack.is(ModItemTags.CUSHIONS) && colorState == ColorProperty.WHITE) {
             level.setBlockAndUpdate(pos, state.setValue(colorProperty, ColorProperty.fromCushion(stack.getItem())));
             level.playSound(null, pos, SoundEvents.WOOL_PLACE, player.getSoundSource(), 1, 1);
             if (!player.getAbilities().instabuild) stack.shrink(1);
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else if (colorState != ColorProperty.WHITE) {
             ItemStack cushion = colorState.toCushion();
             if (stack.is(ModItemTags.CUSHIONS) && !stack.is(cushion.getItem())) {
@@ -68,27 +68,27 @@ public final class InteractionUtils {
                     Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), cushion);
                     stack.shrink(1);
                 }
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             } else if (player.isShiftKeyDown()) {
                 level.setBlockAndUpdate(pos, state.setValue(colorProperty, ColorProperty.WHITE));
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), cushion);
                 level.playSound(null, pos, SoundEvents.WOOL_BREAK, player.getSoundSource(), 1, 1);
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 
-    public static ItemInteractionResult interactOptionalSheet(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<OptionalColorProperty> colorProperty) {
+    public static InteractionResult interactOptionalSheet(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<OptionalColorProperty> colorProperty) {
         var colorState = state.getValue(colorProperty);
 
-        if (level.isClientSide()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (level.isClientSide()) return InteractionResult.PASS;
         if (stack.is(ModItemTags.SHEETS) && colorState == OptionalColorProperty.NONE) {
             level.setBlockAndUpdate(pos, state.setValue(colorProperty, OptionalColorProperty.fromSheet(stack.getItem())));
             level.playSound(null, pos, SoundEvents.WOOL_PLACE, player.getSoundSource(), 1, 1);
             if (!player.getAbilities().instabuild) stack.shrink(1);
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else if (colorState != OptionalColorProperty.NONE) {
             ItemStack sheet = colorState.toSheet();
             if (stack.is(ModItemTags.SHEETS) && !stack.is(sheet.getItem())) {
@@ -99,27 +99,27 @@ public final class InteractionUtils {
                     Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), sheet);
                     stack.shrink(1);
                 }
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             } else if (player.isShiftKeyDown()) {
                 level.setBlockAndUpdate(pos, state.setValue(colorProperty, OptionalColorProperty.NONE));
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), sheet);
                 level.playSound(null, pos, SoundEvents.WOOL_BREAK, player.getSoundSource(), 1, 1);
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 
-    public static ItemInteractionResult interactSheet(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<ColorProperty> colorProperty) {
+    public static InteractionResult interactSheet(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<ColorProperty> colorProperty) {
         var colorState = state.getValue(colorProperty);
 
-        if (level.isClientSide()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (level.isClientSide()) return InteractionResult.PASS;
         if (stack.is(ModItemTags.SHEETS) && colorState == ColorProperty.WHITE) {
             level.setBlockAndUpdate(pos, state.setValue(colorProperty, ColorProperty.fromSheet(stack.getItem())));
             level.playSound(null, pos, SoundEvents.WOOL_PLACE, player.getSoundSource(), 1, 1);
             if (!player.getAbilities().instabuild) stack.shrink(1);
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else if (colorState != ColorProperty.WHITE) {
             ItemStack sheet = colorState.toSheet();
             if (stack.is(ModItemTags.SHEETS) && !stack.is(sheet.getItem())) {
@@ -130,28 +130,28 @@ public final class InteractionUtils {
                     Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), sheet);
                     stack.shrink(1);
                 }
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             } else if (player.isShiftKeyDown()) {
                 level.setBlockAndUpdate(pos, state.setValue(colorProperty, ColorProperty.WHITE));
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), sheet);
                 level.playSound(null, pos, SoundEvents.WOOL_BREAK, player.getSoundSource(), 1, 1);
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 
-    public static ItemInteractionResult interactCounter(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<CounterProperty> counterProperty) {
+    public static InteractionResult interactCounter(BlockState state, Level level, BlockPos pos, Player player, ItemStack stack, EnumProperty<CounterProperty> counterProperty) {
         var counterState = state.getValue(counterProperty);
 
-        if (level.isClientSide()) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (level.isClientSide()) return InteractionResult.PASS;
         if (stack.is(ModItemTags.COUNTER_MATERIALS) && counterState == CounterProperty.CALCITE) {
             level.setBlockAndUpdate(pos, state.setValue(counterProperty, CounterProperty.fromBlock(stack.getItem())));
             SoundEvent event = player.getMainHandItem().is(ItemTags.PLANKS) ? SoundEvents.WOOD_PLACE : SoundEvents.STONE_PLACE;
             level.playSound(null, pos, event, player.getSoundSource(), 1, 1);
             if (!player.getAbilities().instabuild) stack.shrink(1);
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else if (counterState != CounterProperty.CALCITE) {
             ItemStack countertop = counterState.toBlock();
             if (stack.is(ModItemTags.COUNTER_MATERIALS) && !stack.is(countertop.getItem())) {
@@ -166,16 +166,16 @@ public final class InteractionUtils {
                     Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), countertop);
                     stack.shrink(1);
                 }
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             } else if (player.isShiftKeyDown()) {
                 level.setBlockAndUpdate(pos, state.setValue(counterProperty, CounterProperty.CALCITE));
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), countertop);
                 SoundEvent event = countertop.is(ItemTags.PLANKS) ? SoundEvents.WOOD_BREAK : SoundEvents.STONE_BREAK;
                 level.playSound(null, pos, event, player.getSoundSource(), 1, 1);
-                return ItemInteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
 
-        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        return InteractionResult.PASS;
     }
 }

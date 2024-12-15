@@ -9,6 +9,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.decoration.PaintingVariant;
@@ -16,6 +17,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 public class FancyPainting extends Painting {
 
@@ -28,9 +30,10 @@ public class FancyPainting extends Painting {
         this.pos = pos;
     }
 
+    @Nullable
     @Override
-    public ItemEntity spawnAtLocation(ItemLike item) {
-        return super.spawnAtLocation(ModItems.FANCY_PAINTING.get());
+    public ItemEntity spawnAtLocation(ServerLevel serverLevel, ItemLike itemLike) {
+        return super.spawnAtLocation(serverLevel, itemLike);
     }
 
     @Override

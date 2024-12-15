@@ -8,18 +8,17 @@ import earth.terrarium.handcrafted.common.utils.TooltipUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -90,14 +89,14 @@ public class FancyBedBlock extends BedBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+    protected @NotNull BlockState updateShape(BlockState state, LevelReader levelReader, ScheduledTickAccess scheduledTickAccess, BlockPos blockPos, Direction direction, BlockPos blockPos2, BlockState neighborState, RandomSource randomSource) {
         if (direction == getNeighbourDirection(state.getValue(PART), state.getValue(FACING))) {
             return neighborState.is(this) && neighborState.getValue(PART) != state.getValue(PART) ? state
                 .setValue(OCCUPIED, neighborState.getValue(OCCUPIED))
-                .setValue(SHAPE, getShape(this, state.getValue(FACING), level, pos)) :
+                .setValue(SHAPE, getShape(this, state.getValue(FACING), levelReader, blockPos)) :
                 Blocks.AIR.defaultBlockState();
         } else {
-            return super.updateShape(state.setValue(SHAPE, getShape(this, state.getValue(FACING), level, pos)), direction, neighborState, level, pos, neighborPos);
+            return super.updateShape(state, levelReader, scheduledTickAccess, blockPos, direction, blockPos2, neighborState, randomSource);
         }
     }
 
@@ -121,11 +120,11 @@ public class FancyBedBlock extends BedBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        ItemInteractionResult result = state.getValue(PART) == BedPart.HEAD ?
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        InteractionResult result = state.getValue(PART) == BedPart.HEAD ?
             InteractionUtils.interactCushion(state, level, pos, player, stack, COLOR) :
             InteractionUtils.interactSheet(state, level, pos, player, stack, COLOR);
-        if (result != ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION) return result;
+        if (result != InteractionResult.PASS) return result;
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 

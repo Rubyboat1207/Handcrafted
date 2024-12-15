@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
@@ -44,7 +45,9 @@ public enum ColorProperty implements StringRepresentable {
     }
 
     public ItemStack toCushion() {
-        return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, getSerializedName() + "_cushion")).getDefaultInstance();
+        return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, getSerializedName() + "_cushion"))
+            .map(itemReference -> itemReference.value().getDefaultInstance())
+            .orElse(null);
     }
 
     public static ColorProperty fromSheet(Item sheet) {
@@ -52,6 +55,8 @@ public enum ColorProperty implements StringRepresentable {
     }
 
     public ItemStack toSheet() {
-        return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, getSerializedName() + "_sheet")).getDefaultInstance();
+        return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, getSerializedName() + "_sheet"))
+            .map(itemReference -> itemReference.value().getDefaultInstance())
+            .orElse(null);
     }
 }

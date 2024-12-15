@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -60,7 +61,7 @@ public class CustomPaintingItem extends HangingEntityItem {
             }
 
             stack.shrink(1);
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS_SERVER;
         } else {
             return InteractionResult.CONSUME;
         }
@@ -69,7 +70,7 @@ public class CustomPaintingItem extends HangingEntityItem {
     private Optional<FancyPainting> create(Level level, BlockPos pos, Direction direction) {
         FancyPainting painting = new FancyPainting(level, pos);
         List<Holder<PaintingVariant>> paintings = new ArrayList<>();
-        level.registryAccess().registryOrThrow(Registries.PAINTING_VARIANT).getTagOrEmpty(variants).forEach(paintings::add);
+        level.registryAccess().get(Registries.PAINTING_VARIANT).get().value().getTagOrEmpty(variants).forEach(paintings::add);
         if (paintings.isEmpty()) return Optional.empty();
 
         painting.setDirection(direction);

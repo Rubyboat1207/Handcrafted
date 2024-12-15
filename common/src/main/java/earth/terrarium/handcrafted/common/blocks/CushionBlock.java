@@ -39,7 +39,7 @@ public class CushionBlock extends Block implements SittableBlock {
         if (this.sitOn(level, pos, player, null)) {
             return InteractionResult.CONSUME;
         }
-        return InteractionResult.CONSUME_PARTIAL;
+        return InteractionResult.SUCCESS_SERVER;
     }
 
     @Override
